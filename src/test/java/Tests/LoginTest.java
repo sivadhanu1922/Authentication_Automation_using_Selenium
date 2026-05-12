@@ -32,10 +32,8 @@ public class LoginTest {
         driver.quit();
     }
 
-    // -----------------------------------------------
     // TC01 — Valid username and valid password
-    // -----------------------------------------------
-    @Test
+
     public void testValidLogin() {
         loginPage.login(VALID_USER, VALID_PASS);
         String msg = loginPage.getSuccessMessage();
@@ -44,9 +42,8 @@ public class LoginTest {
         System.out.println("TC01 PASSED: Valid login successful");
     }
 
-    // -----------------------------------------------
     // TC02 — Valid username + wrong password
-    // -----------------------------------------------
+
     @Test
     public void testInvalidPassword() {
         loginPage.login(VALID_USER, "wrongpassword");
@@ -56,9 +53,8 @@ public class LoginTest {
         System.out.println("TC02 PASSED: Invalid password handled correctly");
     }
 
-    // -----------------------------------------------
     // TC03 — Wrong username + valid password
-    // -----------------------------------------------
+
     @Test
     public void testInvalidUsername() {
         loginPage.login("wronguser", VALID_PASS);
@@ -68,9 +64,9 @@ public class LoginTest {
         System.out.println("TC03 PASSED: Invalid username handled correctly");
     }
 
-    // -----------------------------------------------
+
     // TC04 — Both fields empty
-    // -----------------------------------------------
+
     @Test
     public void testEmptyCredentials() {
         loginPage.login("", "");
@@ -80,9 +76,8 @@ public class LoginTest {
         System.out.println("TC04 PASSED: Empty fields handled correctly");
     }
 
-    // -----------------------------------------------
     // TC05 — Only username, password empty
-    // -----------------------------------------------
+
     @Test
     public void testEmptyPassword() {
         loginPage.login(VALID_USER, "");
@@ -92,9 +87,8 @@ public class LoginTest {
         System.out.println("TC05 PASSED: Empty password handled correctly");
     }
 
-    // -----------------------------------------------
     // TC06 — Only password, username empty
-    // -----------------------------------------------
+
     @Test
     public void testEmptyUsername() {
         loginPage.login("", VALID_PASS);
@@ -104,9 +98,9 @@ public class LoginTest {
         System.out.println("TC06 PASSED: Empty username handled correctly");
     }
 
-    // -----------------------------------------------
+
     // TC07 — SQL Injection attempt
-    // -----------------------------------------------
+
     @Test
     public void testSQLInjection() {
         loginPage.login("' OR 1=1 --", "anything");
@@ -116,9 +110,9 @@ public class LoginTest {
         System.out.println("TC07 PASSED: SQL injection blocked correctly");
     }
 
-    // -----------------------------------------------
+
     // TC08 — Password field should be masked
-    // -----------------------------------------------
+
     @Test
     public void testPasswordIsMasked() {
         Assert.assertTrue(loginPage.isPasswordMasked(),
