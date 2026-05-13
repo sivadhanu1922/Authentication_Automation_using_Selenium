@@ -17,7 +17,7 @@ public class LoginTest {
     String VALID_PASS = "SuperSecretPassword!";
 
     // Runs before every @Test method
-    @BeforeMethod
+    @BeforeClass
     public void setUp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -27,14 +27,14 @@ public class LoginTest {
     }
 
     // Runs after every @Test method
-    @AfterMethod
+    @AfterClass
     public void tearDown() {
         driver.quit();
     }
 
     // TC01 — Valid username and valid password
 
-    public void testValidLogin() {
+    public void testValidLogin()  {
         loginPage.login(VALID_USER, VALID_PASS);
         String msg = loginPage.getSuccessMessage();
         Assert.assertTrue(msg.contains("You logged into a secure area"),
